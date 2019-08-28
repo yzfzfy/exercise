@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>测试a标签点击事件</title>
+        <style media="screen">
+            a{
+                display: inline-block;
+                width: 100px;
+                height: 20px;
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" name="" value="" onblur="blurEvent();" id="input">
+        <!-- <a href="http://www.baidu.com" onclick="clickADom();return false;">点击a标签</a> -->
+        <a id="aDom">点击a标签</a>
+        <input id="inputDom">点击input标签<br />
+        <button id="button">点击button标签</button>
+        <span type="button" name="button" id="other">点击其他标签</span>
+    </body>
+    <script type="text/javascript">
+        let input = document.getElementById('input');
+        let aDom = document.getElementById('aDom');
+        let inputDom = document.getElementById('inputDom');
+        let button = document.getElementById('button');
+        let other = document.getElementById('other');
+
+        //通过在a标签的click事件中alert框，当关闭alert之后页面发生跳转
+        //说明点击a标签时先触发的click事件，然后再跳转的href的内容
+        //如果想阻止href跳转，则dom中的事件需为: onclick="clickADom();return false;"
+        function blurEvent() {
+            console.log('blur事件触发了');
+        }
+
+        aDom.onclick = function (e) {
+            console.log('click a');
+            // e.preventDefault();
+        }
+
+        inputDom.onclick = function (e) {
+            console.log('click other input tag');
+            // e.preventDefault();
+        }
+
+        button.onclick = function (e) {
+            console.log(e);
+            console.log('click button');
+            e.preventDefault();
+        }
+
+        button.onmousedown = function (e) {
+            console.log('mousedown button');
+            e.preventDefault();
+        }
+
+        other.onclick = function (e) {
+            console.log('click other');
+            e.preventDefault();
+        }
+
+        other.onmousedown = function (e) {
+            console.log('mousedown other');
+            e.preventDefault();
+        }
+
+        //总结：
+        //在普通的无框架的html文档中：有一个带有blur事件的input框，另外一个元素无论是何种标签(即便是input)，当click该元素时，
+        //都会首先触发input的blur事件，然后才是事件点击对象的click事件；
+        //但是如果不想要触发onblur，需要在当前点击的元素的onmousedown事件中执行e.preventDefault()
+        //
+        //react中：同样有一个input并添加onblur事件，另外有一个元素添加click事件，当该元素为a标签、span、div等标签时，
+        //click事件不会触发input的blur事件,但是当该元素为button元素时，click button会触发input的blur事件，该过程发生在
+        //e.preventDefault()事件执行之前，所以和阻止默认事件无关；
+    </script>
+</html>

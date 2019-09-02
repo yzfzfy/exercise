@@ -71,7 +71,8 @@
         //但是如果不想要触发onblur，需要在当前点击的元素的onmousedown事件中执行e.preventDefault()
         //
         //react中：同样有一个input并添加onblur事件，另外有一个元素添加click事件，当该元素为a标签、span、div等标签时，
-        //click事件不会触发input的blur事件,但是当该元素为button元素时，click button会触发input的blur事件，该过程发生在
+        //click事件不会触发input的blur事件,但是当该元素为button元素(或者select、input、textarea)时，
+        //click button会触发input的blur事件，该过程发生在
         //e.preventDefault()事件执行之前，所以和阻止默认事件无关；
     </script>
 </html>

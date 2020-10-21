@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            padding: 20px;
+            background-color: red;
+        }
+
+        .child{
+            height: 100px;
+            background-color: blue;
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="child"></div>
+    </div>
+</body>
+<script>
+    // 结论
+    // 当父容器有左右padding时，例如各20px，并且子项的margin-left和margin-right为负值时，
+    // 该负值的绝对值小于等于父padding值得情况下子项不会将父容器撑开。
+</script>
+</html>
